@@ -21,8 +21,8 @@ public class CurrencyConversion {
 		this.id = id;
 		this.from = from;
 		this.to = to;
-		this.conversionMultiple = conversionMultiple;
 		this.quantity = quantity;
+		this.conversionMultiple = conversionMultiple;
 		this.totalCalculatedAmount = totalCalculatedAmount;
 		this.environment = environment;
 	}
