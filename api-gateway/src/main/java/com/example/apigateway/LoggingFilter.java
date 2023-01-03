@@ -9,14 +9,16 @@ import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
+// If you want to implement something for all the incoming request then you can implement it here. 
+// Like authentication, authorization, logging, etc.
+
 @Component
 public class LoggingFilter implements GlobalFilter {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 //	We want to log some information about the request.
-//	Information about the request is available in the first parameter 'exchange'.
-	
+//	Information about the request is available in the first parameter 'exchange'. 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		log.info("Path of the request received -> {}", exchange.getRequest().getPath());
