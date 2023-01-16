@@ -11,7 +11,32 @@ services:
          - naming-server   
 # hyphen(-) is used above because it is an array  
         environment:
-          EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka      
+          EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+          
+    currency-conversion:
+        image: placidpj/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+        ports:
+         - "8100:8100"
+        networks:
+         - currency-network 
+        depends_on:
+         - naming-server   
+# hyphen(-) is used above because it is an array  
+        environment:
+          EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka         
+    
+    api-gateway:
+        image: placidpj/mmv2-api-gateway:0.0.1-SNAPSHOT
+        ports:
+         - "8765:8765"
+        networks:
+         - currency-network 
+        depends_on:
+         - naming-server   
+# hyphen(-) is used above because it is an array  
+        environment:
+          EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka 
+          
     naming-server:
         image: placidpj/mmv2-naming-server:0.0.1-SNAPSHOT
         ports:

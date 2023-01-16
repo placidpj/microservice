@@ -77,6 +77,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Added below configuration for creating docker image-->
+				<configuration>
+					<image>
+						<name>placidpj/mmv2-${project.artifactId}:${project.version}</name>
+					</image>
+					<!-- Docker use many images to create a new docker image. The default value for pullPolicy is 'ALWAYS'-->
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
