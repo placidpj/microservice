@@ -38,6 +38,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+<!-- Required for Zipkin-->		
 <!-- Connecting currency exchange with Zipkin -->
 		<!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-brave -->
 		<dependency>
@@ -50,13 +51,12 @@
 		    <artifactId>zipkin-reporter-brave</artifactId>
 		</dependency>
 
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
 		<dependency>
 		    <groupId>org.springframework.amqp</groupId>
 		    <artifactId>spring-rabbit</artifactId>
 		</dependency>
-
+<!-- End for Zipkin -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -102,6 +102,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Added below configuration for creating docker image-->
+				<configuration>
+					<image>
+						<name>placidpj/mmv2-${project.artifactId}:${project.version}</name>
+					</image>
+					<!-- Docker use many images to create a new docker image. The default value for pullPolicy is 'ALWAYS'-->
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
